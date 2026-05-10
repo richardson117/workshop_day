@@ -1,6 +1,11 @@
 {
   "name": "Lobby Radar Workshop",
   "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    }
+  },
   "forwardPorts": [8765],
   "portsAttributes": {
     "8765": {
