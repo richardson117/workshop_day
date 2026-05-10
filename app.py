@@ -29,7 +29,7 @@ CANONICAL_RULES = [
 ]
 
 
-def load_local_env(path=ROOT / ".env"):
+def load_local_env(path=ROOT / ".env", override=False):
     if not path.exists():
         return
     for line in path.read_text(encoding="utf-8").splitlines():
@@ -39,7 +39,7 @@ def load_local_env(path=ROOT / ".env"):
         key, value = line.split("=", 1)
         key = key.strip()
         value = value.strip().strip('"').strip("'")
-        if key and key not in os.environ:
+        if key and (override or key not in os.environ):
             os.environ[key] = value
 
 
@@ -105,6 +105,7 @@ def ensure_defaults(conn):
 
 
 def meta(conn):
+    load_local_env(override=True)
     geos = rows_to_dicts(conn.execute("SELECT code, name FROM geos ORDER BY code"))
     for geo in geos:
         geo["scan_supported"] = geo["code"] in SUPPORTED_SCAN_GEOS
@@ -255,6 +256,7 @@ def overview(conn, params):
 
 
 def run_scan(job_id, geo):
+    load_local_env(override=True)
     env = os.environ.copy()
     env["PYTHONIOENCODING"] = "utf-8"
     env_name = f"GEO_PROXY_{geo}"
@@ -328,7 +330,7 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def main():
-    load_local_env()
+    load_local_env(override=True)
     with connect(DEFAULT_DB_PATH) as conn:
         init_db(conn)
         ensure_defaults(conn)
