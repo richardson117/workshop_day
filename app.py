@@ -83,6 +83,26 @@ def read_json_body(handler):
     return json.loads(handler.rfile.read(length).decode("utf-8"))
 
 
+def save_proxy_env(payload, path=ROOT / ".env"):
+    allowed = {"GEO_PROXY_AU", "GEO_PROXY_DE"}
+    current = {}
+    if path.exists():
+        for line in path.read_text(encoding="utf-8").splitlines():
+            if not line or line.strip().startswith("#") or "=" not in line:
+                continue
+            key, value = line.split("=", 1)
+            if key.strip() in allowed:
+                current[key.strip()] = value.strip()
+    for key in allowed:
+        value = (payload.get(key) or "").strip()
+        if value:
+            current[key] = value
+    lines = [f"{key}={current.get(key, '')}" for key in sorted(allowed)]
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    load_local_env(override=True)
+    return {key: bool(os.environ.get(key)) for key in sorted(allowed)}
+
+
 def now_iso():
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
@@ -308,6 +328,9 @@ class Handler(BaseHTTPRequestHandler):
             JOBS[job_id] = {"id": job_id, "geo": geo, "status": "running", "started_at": now_iso()}
             threading.Thread(target=run_scan, args=(job_id, geo), daemon=True).start()
             json_response(self, JOBS[job_id])
+            return
+        if parsed.path == "/api/proxy-env":
+            json_response(self, {"ready": save_proxy_env(payload)})
             return
         json_response(self, {"error": "Unknown endpoint"}, 404)
 

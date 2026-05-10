@@ -140,12 +140,23 @@ async function runScan() {
   el("scanButton").textContent = "Run live scan";
 }
 
+async function saveProxy() {
+  const result = await postJson("/api/proxy-env", {
+    GEO_PROXY_AU: el("proxyAuInput").value,
+    GEO_PROXY_DE: el("proxyDeInput").value,
+  });
+  const ready = result.ready || {};
+  el("proxyStatus").textContent = `Saved. AU: ${ready.GEO_PROXY_AU ? "ready" : "missing"} / DE: ${ready.GEO_PROXY_DE ? "ready" : "missing"}`;
+  await refreshMeta();
+}
+
 async function boot() {
   await refreshMeta();
   await loadOverview();
   ["geoSelect", "brandSelect"].forEach((id) => el(id).addEventListener("change", loadOverview));
   el("searchInput").addEventListener("input", loadOverview);
   el("scanButton").addEventListener("click", runScan);
+  el("saveProxyButton").addEventListener("click", saveProxy);
 }
 
 boot();

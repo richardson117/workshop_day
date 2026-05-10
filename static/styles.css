@@ -49,6 +49,7 @@ button:disabled {
 
 .topbar,
 .toolbar,
+.proxy-panel,
 .proof,
 .panel,
 .score-card {
@@ -94,6 +95,31 @@ h2 {
   grid-template-columns: 160px 220px 1fr;
   margin-bottom: 12px;
   padding: 16px;
+}
+
+.proxy-panel {
+  margin-bottom: 12px;
+  padding: 14px 16px;
+}
+
+.proxy-panel summary {
+  color: var(--accent-dark);
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.proxy-grid {
+  align-items: end;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr 1fr auto;
+  margin-top: 12px;
+}
+
+.proxy-panel p {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 10px 0 0;
 }
 
 label {
@@ -243,6 +269,7 @@ th {
 
   .topbar,
   .toolbar,
+  .proxy-grid,
   .grid,
   .score-grid {
     grid-template-columns: 1fr;

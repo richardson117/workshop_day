@@ -22,6 +22,18 @@
         <label>Search <input id="searchInput" placeholder="Game, provider, brand" /></label>
       </section>
 
+      <section class="proxy-panel">
+        <details>
+          <summary>Proxy setup for live scan</summary>
+          <div class="proxy-grid">
+            <label>AU proxy <input id="proxyAuInput" placeholder="http://USER:PASSWORD@HOST:PORT" /></label>
+            <label>DE proxy <input id="proxyDeInput" placeholder="http://USER:PASSWORD@HOST:PORT" /></label>
+            <button id="saveProxyButton" type="button">Save proxy</button>
+          </div>
+          <p id="proxyStatus">Saved locally to .env. Do not commit this file.</p>
+        </details>
+      </section>
+
       <section class="proof" id="runProof">Loading run proof...</section>
 
       <section class="score-grid" id="scoreGrid"></section>
