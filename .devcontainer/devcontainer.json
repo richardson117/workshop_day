@@ -1,0 +1,17 @@
+{
+  "name": "Lobby Radar Workshop",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "forwardPorts": [8765],
+  "portsAttributes": {
+    "8765": {
+      "label": "Lobby Radar",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "postCreateCommand": "python import_snapshots.py || true",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python"]
+    }
+  }
+}

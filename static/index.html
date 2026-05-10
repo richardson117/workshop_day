@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lobby Radar Starter</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p>Product intelligence starter</p>
+          <h1>Competitor Lobby Radar</h1>
+        </div>
+        <button id="scanButton" type="button">Run live scan</button>
+      </header>
+
+      <section class="toolbar">
+        <label>Geo <select id="geoSelect"></select></label>
+        <label>Brand <select id="brandSelect"></select></label>
+        <label>Search <input id="searchInput" placeholder="Game, provider, brand" /></label>
+      </section>
+
+      <section class="proof" id="runProof">Loading run proof...</section>
+
+      <section class="score-grid" id="scoreGrid"></section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>New section monitor</h2>
+          <span id="newCount">0 games</span>
+        </div>
+        <div id="newDiff" class="change-list"></div>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <div class="panel-head">
+            <h2>Category groups</h2>
+          </div>
+          <div id="groupsList" class="pill-list"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <h2>Top providers</h2>
+          </div>
+          <div id="providersList" class="pill-list"></div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Games</h2>
+          <span id="gameCount">0</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Brand</th>
+                <th>Section</th>
+                <th>#</th>
+                <th>Game</th>
+                <th>Provider</th>
+              </tr>
+            </thead>
+            <tbody id="gamesTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
