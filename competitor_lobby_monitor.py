@@ -64,6 +64,20 @@ GEO = {
 }
 
 
+def load_local_env(path=Path(".env")):
+    if not path.exists():
+        return
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        if key and key not in os.environ:
+            os.environ[key] = value
+
+
 def utc_now():
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
@@ -567,6 +581,7 @@ def write_csv(path, snapshot):
 
 
 def main():
+    load_local_env()
     parser = argparse.ArgumentParser(description="Geo-aware competitor lobby monitor")
     parser.add_argument("--geo", default="AU", choices=sorted(GEO.keys()))
     parser.add_argument("--out-dir", default="snapshots")

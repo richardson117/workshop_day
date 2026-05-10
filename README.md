@@ -23,14 +23,20 @@ http://127.0.0.1:8765
 
 ## Live Scan
 
-Set a proxy for the geo you want to scan:
+Create a local `.env` file:
 
-```powershell
-$env:GEO_PROXY_AU='http://USER:PASSWORD@HOST:PORT'
-$env:GEO_PROXY_DE='http://USER:PASSWORD@HOST:PORT'
+```bash
+cp .env.example .env
 ```
 
-Then click **Run live scan** in the UI.
+Open `.env` and paste the workshop proxy values.
+
+```text
+GEO_PROXY_AU=http://USER:PASSWORD@HOST:PORT
+GEO_PROXY_DE=http://USER:PASSWORD@HOST:PORT
+```
+
+Then restart `python app.py` and click **Run live scan** in the UI.
 
 If no proxy is configured, the app still opens with seeded real snapshots.
 
