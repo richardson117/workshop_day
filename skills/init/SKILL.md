@@ -54,6 +54,7 @@ initialise git, commit the seed, and run the smoke check.
    skip = {
        ".claude-plugin", "skills", "commands", "agents", "templates",
        ".git", "__pycache__", ".pytest_cache", "_lobby_init.py",
+       ".in_use",  # Claude Code plugin marker, not project code
    }
 
    copied = 0
