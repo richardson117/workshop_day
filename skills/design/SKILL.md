@@ -25,7 +25,7 @@ how the team plans to solve the spec. 3 sections + optional ADRs.
    - `AGENTS.md` for any architectural constraints
    - Glance at the modules listed as `Files touched` in similar past features
 
-3. **Draft design.md** using `.claude/templates/design-template.md`. Three sections:
+3. **Draft design.md** using `templates/design-template.md`. Three sections:
    - **§1 Approach summary** — 1–2 paragraphs, plain English. What you'll build,
      what existing code you'll reuse, what you'll add.
    - **§2 Key decisions** — bulleted list of choices made (e.g.
@@ -42,7 +42,7 @@ how the team plans to solve the spec. 3 sections + optional ADRs.
      trade-offs)
    
    If decision meets ≥2 of 3 -> spawn ADR at `docs/features/<slug>/adr-NNNN-<title>.md`
-   using `.claude/templates/adr-template.md`. Numbering: start at the highest existing ADR + 1
+   using `templates/adr-template.md`. Numbering: start at the highest existing ADR + 1
    across the whole project.
    
    If decision meets <2 of 3 -> it stays in design.md §2, no separate ADR.

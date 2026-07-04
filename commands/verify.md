@@ -4,4 +4,4 @@ description: Adversarial Generator-Evaluator pass. Dispatches sdd-reviewer in fr
 
 Feature slug: $ARGUMENTS
 
-Run the `verify` skill using the instructions at `.claude/skills/verify/SKILL.md`. Apply them to the feature slug above.
+Run the `verify` skill using the instructions at `skills/verify/SKILL.md`. Apply them to the feature slug above.

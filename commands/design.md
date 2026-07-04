@@ -4,4 +4,4 @@ description: Turn spec.md into design.md with approach summary, key decisions, a
 
 Feature slug: $ARGUMENTS
 
-Run the `design` skill using the instructions at `.claude/skills/design/SKILL.md`. Apply them to the feature slug above.
+Run the `design` skill using the instructions at `skills/design/SKILL.md`. Apply them to the feature slug above.

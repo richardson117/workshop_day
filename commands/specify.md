@@ -4,4 +4,4 @@ description: Turn a one-line feature idea into a structured spec.md (6 sections)
 
 Feature slug: $ARGUMENTS
 
-Run the `specify` skill using the instructions at `.claude/skills/specify/SKILL.md`. Apply them to the feature slug above.
+Run the `specify` skill using the instructions at `skills/specify/SKILL.md`. Apply them to the feature slug above.

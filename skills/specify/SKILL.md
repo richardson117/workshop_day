@@ -34,7 +34,7 @@ get there.
      - "What could break in the existing system if we add this?"
      - "Who uses Lobby Monitor that this affects?"
 
-4. **Draft spec.md** using `.claude/templates/spec-template.md`. Use the user's answers verbatim
+4. **Draft spec.md** using `templates/spec-template.md`. Use the user's answers verbatim
    where possible — don't invent.
 
 5. **Self-critic pass**: re-read your draft. Check:

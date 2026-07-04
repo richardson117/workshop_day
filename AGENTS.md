@@ -22,8 +22,11 @@ workshop_day/
   data/                     # SQLite lives here (created on first run)
   snapshots/                # seed JSON files
   docs/                     # SDD-lite docs + feature specs
-  .claude/                  # skills, agents, commands, templates (plugin)
-  .claude-plugin/           # plugin manifest
+  skills/                   # plugin skills (auto-discovered)
+  commands/                 # plugin slash commands
+  agents/                   # plugin subagents
+  templates/                # artifact templates
+  .claude-plugin/           # plugin manifest + marketplace
 ```
 
 ## Prefer touching

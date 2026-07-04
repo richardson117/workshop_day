@@ -4,4 +4,4 @@ description: Run the TDD loop across all unchecked tasks. Spawns sdd-test-author
 
 Feature slug: $ARGUMENTS
 
-Run the `implement` skill using the instructions at `.claude/skills/implement/SKILL.md`. Apply them to the feature slug above.
+Run the `implement` skill using the instructions at `skills/implement/SKILL.md`. Apply them to the feature slug above.
