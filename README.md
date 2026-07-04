@@ -19,7 +19,7 @@ Inside Claude Code:
 
 ```
 > /plugin marketplace add richardson117/workshop_day
-> /plugin install workshop-day
+> /plugin install lobby-monitor
 ```
 
 You get 6 slash commands:

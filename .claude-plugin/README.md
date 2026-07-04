@@ -1,4 +1,4 @@
-# Product Builder Workshop · Day 2 Plugin
+# Lobby Monitor · Workshop Plugin
 
 Claude Code plugin bundling the SDD-lite methodology on top of the Lobby Radar workshop
 starter. Install once, get 6 slash commands + 4 subagents.
@@ -31,7 +31,7 @@ The existing Lobby Radar Workshop Starter: `app.py`, `competitor_lobby_monitor.p
 ```
 > claude
 > /plugin marketplace add richardson117/workshop_day
-> /plugin install workshop-day
+> /plugin install lobby-monitor
 ```
 
 Then start with:
@@ -41,7 +41,7 @@ Then start with:
 
 ## Update
 
-Push to the repo. Users refresh via `/plugin update workshop-day`.
+Push to the repo. Users refresh via `/plugin update lobby-monitor`.
 
 ## Docs
 
