@@ -1,0 +1,18 @@
+{
+  "name": "workshop-day",
+  "displayName": "Product Builder Workshop · Day 2",
+  "version": "0.1.0",
+  "description": "SDD-lite skills, subagents, and project scaffold for the Product Builder Workshop v2. Turns a raw feature idea into a shipped PR through 6 stages with human gates.",
+  "author": {
+    "name": "Ros"
+  },
+  "license": "MIT",
+  "keywords": [
+    "sdd",
+    "spec-driven-development",
+    "workshop",
+    "lobby-monitor",
+    "iGaming",
+    "multi-agent"
+  ]
+}
