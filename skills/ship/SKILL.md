@@ -1,6 +1,6 @@
 ---
 name: ship
-description: Update CHANGELOG.md, run final smoke check, commit, push branch, open PR. Refuses if verify didn't PASS. Never auto-merges.
+description: Update CHANGELOG.md + PROGRESS.md, run final smoke check, commit, push branch, open PR. Refuses if verify didn't PASS. Never auto-merges.
 model: sonnet
 effort: low
 ---
@@ -35,13 +35,27 @@ Final step. Verify is PASS, code is green, time to ship as a reviewable PR.
    - `python smoke_check.py` (repo smoke test; skip if project has no tests/ folder)
    - If anything fails -> STOP, report, don't proceed
 
-4. **Stage + commit**:
+4. **Append to PROGRESS.md** at repo root. If file doesn't exist -> create it with a
+   `# Progress` header. Append this block (prepend today's date via `date +%Y-%m-%d`
+   on posix / `Get-Date -Format yyyy-MM-dd` on Windows):
+   ```markdown
+   ## <YYYY-MM-DD> — <slug>
+   - Shipped: <spec §1 one-liner>
+   - Files touched: <comma-separated list from tasks.md Files: lines>
+   - Gate: green (smoke_check.py<, pytest tests/ if present>)
+   - Verify: PASS — see docs/features/<slug>/verify-report.md
+   ```
+   Leave a blank line before and after. Do NOT rewrite existing entries. Do NOT add
+   reflection / feelings / lessons — that stays as the human's part, if they want it.
+
+5. **Stage + commit**:
    - `git add` ONLY the files touched in this feature (from tasks.md)
    - Plus CHANGELOG.md
+   - Plus PROGRESS.md
    - Plus the `docs/features/<slug>/` folder
    - `git commit -m "feat(<slug>): <spec §1 one-liner>"`
 
-5. **Push + PR**:
+6. **Push + PR**:
    - Branch name: `feature/<slug>`
    - If not already on this branch, run `git checkout -b feature/<slug>` first.
    - `git push -u origin feature/<slug>`
@@ -66,11 +80,11 @@ Final step. Verify is PASS, code is green, time to ship as a reviewable PR.
      <spec §6>
      ```
 
-6. **Handoff**:
+7. **Handoff**:
    ```
    [OK] Shipped — PR opened at <URL>
-   📋 CHANGELOG.md updated
-   ⏸  Stopped before merge (human review required)
+   [LOG] CHANGELOG.md + PROGRESS.md updated
+   [WAIT] Stopped before merge (human review required)
    ```
 
 ## What you DON'T do
