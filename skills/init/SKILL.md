@@ -27,35 +27,23 @@ initialise git, commit the seed, and run the smoke check.
 
    Do not offer `--force`. Do not overwrite. This is a hard gate.
 
-3. **Resolve plugin cache + copy.** Save this Python script as `_lobby_init.py` in CWD,
-   then execute it via the detected `python` command. The script deletes itself when it
-   finishes — do not delete it yourself and do not commit it.
+3. **Copy the starter from the plugin.** Save this Python script as `_lobby_init.py` in
+   CWD, exactly as written (the plugin path below is already filled in), then execute it
+   via the detected `python` command. The script deletes itself when it finishes — do
+   not delete it yourself and do not commit it.
 
    ```python
-   import atexit, os, shutil, sys
+   import atexit, shutil, sys
    from pathlib import Path
 
    atexit.register(lambda: Path(__file__).unlink(missing_ok=True))
 
-   config_dir = Path(os.environ.get("CLAUDE_CONFIG_DIR") or Path.home() / ".claude")
-   cache_root = config_dir / "plugins" / "cache" / "workshop-day" / "sdd"
-   if not cache_root.exists():
-       print(f"ERROR: plugin cache not found at {cache_root}")
+   src = Path(r"${CLAUDE_PLUGIN_ROOT}")
+   if not (src / "app.py").exists():
+       print(f"ERROR: starter code not found in plugin folder {src}")
        print("Reinstall the plugin: /plugin install sdd@workshop-day")
        sys.exit(2)
 
-   def version_key(p):
-       try:
-           return tuple(int(x) for x in p.name.split("."))
-       except ValueError:
-           return (-1,)
-
-   versions = sorted((p for p in cache_root.iterdir() if p.is_dir()), key=version_key, reverse=True)
-   if not versions:
-       print(f"ERROR: no version subdirs under {cache_root}")
-       sys.exit(2)
-
-   src = versions[0]
    dst = Path.cwd()
    print(f"Source: {src}")
    print(f"Target: {dst}")
@@ -111,12 +99,11 @@ initialise git, commit the seed, and run the smoke check.
 
 - Python not on PATH
 - CWD not empty (per the strict list in step 2)
-- Plugin cache directory missing → tell them to reinstall the plugin
-- Plugin cache has no version subdirs → tell them to reinstall the plugin
+- Starter code not found in the plugin folder → tell them to reinstall the plugin
 
 ## What you do NOT do
 
-- Do NOT touch the plugin cache itself
+- Do NOT touch the plugin folder itself
 - Do NOT delete anything in CWD (even if it looks stale)
 - Do NOT try to install Python packages, run pip, or edit requirements.txt
 - Do NOT push anything to any git remote
