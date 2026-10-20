@@ -67,7 +67,7 @@ If a feature needs verification beyond smoke, add a `test_<feature>.py` next to
 
 ## SDD-lite
 
-The `/specify`, `/design`, `/tasks`, `/implement`, `/verify`, `/ship` commands are
+The `/sdd:specify`, `/sdd:design`, `/sdd:tasks`, `/sdd:implement`, `/sdd:verify`, `/sdd:ship` commands are
 installed by the plugin. See:
 
 - `WORKSHOP.md` — Day 2 lab flow (3-step compressed loop)

@@ -1,7 +1,7 @@
 # Agent Teams — beta experimentation
 
 Files here support the 3-minute Agent Teams demo shown at Day 2 of the Product Builder
-Workshop v2. They are **not** part of the `lobby-monitor` plugin — install the plugin
+Workshop v2. They are **not** part of the `sdd` plugin — install the plugin
 normally, then use these separately when you want to try Agent Teams.
 
 ## What Agent Teams is
@@ -64,6 +64,6 @@ about Lobby Monitor. Reuse them in any codebase.
 ## Caveats
 
 - Beta. API may shift between Claude Code releases.
-- Not covered by the `lobby-monitor` plugin. Agent Teams is a separate concern.
+- Not covered by the `sdd` plugin. Agent Teams is a separate concern.
 - Not required for any workshop lab. Purely a "next level" tease. Practice comes in
   the follow-up Complex Systems workshop.

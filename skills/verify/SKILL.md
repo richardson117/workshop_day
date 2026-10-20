@@ -9,7 +9,7 @@ effort: high
 
 ## What you do
 
-After `/implement` reports all GREEN, run an **adversarial** evaluation. Your job is
+After `/sdd:implement` reports all GREEN, run an **adversarial** evaluation. Your job is
 to spawn a fresh `sdd-reviewer` subagent in clean context and let it try hard to find
 why the feature is NOT actually done.
 
@@ -27,7 +27,7 @@ context = the only honest QA at this scale.
 
 1. **Gate**: check `tasks.md` has all tasks marked `[x]`. If any `[ ]` or `[!]` -> refuse:
    ```
-   [NO] Cannot verify — not all tasks complete. Finish /implement first.
+   [NO] Cannot verify — not all tasks complete. Finish /sdd:implement first.
    ```
 
 2. **Gather inputs for evaluator**:
@@ -67,11 +67,11 @@ context = the only honest QA at this scale.
 4. **Capture reviewer output** -> write to `docs/features/<slug>/verify-report.md`.
 
 5. **Decide next action**:
-   - **All ACs PASS + Overall PASS**: print success message, hand off to `/ship`
+   - **All ACs PASS + Overall PASS**: print success message, hand off to `/sdd:ship`
    - **Any FAIL or Overall != PASS**: 
      - Add new tasks to `tasks.md` for each blocker issue (T-NNN — Fix <issue>)
      - Mark spec/design as needing update if reviewer flagged AC ambiguity
-     - Print: "[NO] Verify failed. <N> blockers. New tasks added. Re-run /implement."
+     - Print: "[NO] Verify failed. <N> blockers. New tasks added. Re-run /sdd:implement."
    - **WEAK ACs (test passes for wrong reason)**:
      - Add task: "Strengthen test for AC X"
      - Don't block ship, but flag in handoff
@@ -81,7 +81,7 @@ context = the only honest QA at this scale.
    [OK] Verify PASS. All N ACs satisfied + tested honestly.
    📄 verify-report.md written.
    
-   Next step: /ship <slug>
+   Next step: /sdd:ship <slug>
    ```
 
 ## What you DON'T do

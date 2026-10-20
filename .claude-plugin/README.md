@@ -6,12 +6,12 @@ starter. Install once, get 6 slash commands + 4 subagents.
 ## What ships
 
 ### Skills — slash commands
-- `/specify <slug>` — turn a raw feature idea into a structured `spec.md`
-- `/design <slug>` — read the spec, draft `design.md` (+ ADR if irreversible)
-- `/tasks <slug>` — decompose design into atomic tasks in `tasks.md`
-- `/implement <slug>` — walk tasks with test-author + implementer subagents
-- `/verify <slug>` — adversarial Generator-Evaluator pass
-- `/ship <slug>` — changelog + PR
+- `/sdd:specify <slug>` — turn a raw feature idea into a structured `spec.md`
+- `/sdd:design <slug>` — read the spec, draft `design.md` (+ ADR if irreversible)
+- `/sdd:tasks <slug>` — decompose design into atomic tasks in `tasks.md`
+- `/sdd:implement <slug>` — walk tasks with test-author + implementer subagents
+- `/sdd:verify <slug>` — adversarial Generator-Evaluator pass
+- `/sdd:ship <slug>` — changelog + PR
 
 ### Subagents
 - `sdd-test-author` — writes failing tests before code (RED)
@@ -31,17 +31,17 @@ The existing Lobby Radar Workshop Starter: `app.py`, `competitor_lobby_monitor.p
 ```
 > claude
 > /plugin marketplace add richardson117/workshop_day
-> /plugin install lobby-monitor
+> /plugin install sdd@workshop-day
 ```
 
 Then start with:
 ```
-> /specify add-notifications
+> /sdd:specify add-notifications
 ```
 
 ## Update
 
-Push to the repo. Users refresh via `/plugin update lobby-monitor`.
+Push to the repo. Users refresh via `/plugin update sdd@workshop-day`.
 
 ## Docs
 

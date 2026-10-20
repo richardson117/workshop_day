@@ -1,13 +1,13 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "workshop-day",
-  "description": "Product Builder Workshop v2 — Day 2 marketplace, currently ships the lobby-monitor plugin (SDD-lite skills + subagents + reference example on top of the Lobby Radar starter).",
+  "description": "Product Builder Workshop v2 — Day 2 marketplace, currently ships the sdd plugin (SDD-lite skills + subagents + reference example on top of the Lobby Radar starter).",
   "owner": {
     "name": "Ros"
   },
   "plugins": [
     {
-      "name": "lobby-monitor",
+      "name": "sdd",
       "description": "SDD-lite skills, subagents, and project scaffold for the Product Builder Workshop v2. Turns a raw feature idea into a shipped PR through 6 stages with human gates.",
       "author": {
         "name": "Ros"

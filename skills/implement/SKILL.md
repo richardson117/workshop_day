@@ -74,7 +74,7 @@ Read `docs/features/<slug>/tasks.md` and work through every unchecked task using
    [OK] All N tasks GREEN. tasks.md updated.
    📊 Total: <N> tasks, <M> parallel, <K> minutes total wall time
    
-   Next step: /verify <slug>
+   Next step: /sdd:verify <slug>
    ```
 
 ## What you DON'T do

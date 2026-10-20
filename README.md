@@ -10,7 +10,7 @@ Inside Claude Code:
 
 ```
 > /plugin marketplace add richardson117/workshop_day
-> /plugin install lobby-monitor@workshop-day
+> /plugin install sdd@workshop-day
 ```
 
 That's it — commands and subagents are now available in every Claude Code session.
@@ -26,14 +26,14 @@ claude
 Then in Claude Code:
 
 ```
-> /init
+> /sdd:init
 ```
 
 That copies the starter code (`app.py`, `lobby_db.py`, snapshots, dashboard,
 reference example) from the plugin cache into your empty folder, initialises git,
 and runs the smoke check.
 
-After `/init`, you can:
+After `/sdd:init`, you can:
 
 ```bash
 python app.py    # dashboard on http://127.0.0.1:8765
@@ -42,18 +42,18 @@ python app.py    # dashboard on http://127.0.0.1:8765
 Or jump straight in with your first feature spec:
 
 ```
-> /specify <slug>
+> /sdd:specify <slug>
 ```
 
 ## The 7 skills
 
-- `/init` — copy the starter code + init git (run once per lab folder)
-- `/specify <slug>` — turn a raw feature idea into `docs/features/<slug>/spec.md`
-- `/design <slug>` — read spec, draft `design.md` (+ ADR if irreversible)
-- `/tasks <slug>` — decompose design into atomic tasks
-- `/implement <slug>` — test-author + implementer subagents walk the tasks
-- `/verify <slug>` — adversarial reviewer looks for holes
-- `/ship <slug>` — changelog + branch + PR
+- `/sdd:init` — copy the starter code + init git (run once per lab folder)
+- `/sdd:specify <slug>` — turn a raw feature idea into `docs/features/<slug>/spec.md`
+- `/sdd:design <slug>` — read spec, draft `design.md` (+ ADR if irreversible)
+- `/sdd:tasks <slug>` — decompose design into atomic tasks
+- `/sdd:implement <slug>` — test-author + implementer subagents walk the tasks
+- `/sdd:verify <slug>` — adversarial reviewer looks for holes
+- `/sdd:ship <slug>` — changelog + branch + PR
 
 And 4 subagents: `sdd-test-author`, `sdd-implementer`, `sdd-reviewer`,
 `sdd-context-checker`.
@@ -108,7 +108,7 @@ workshop_day/
   .claude-plugin/              # plugin manifest + marketplace
 ```
 
-## Fallback if `/init` fails
+## Fallback if `/sdd:init` fails
 
 If your machine can't resolve the plugin cache (rare — Codex ranked this the safest
 path but not risk-free), grab the ZIP:

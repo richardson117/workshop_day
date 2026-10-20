@@ -1,6 +1,6 @@
 # spec.md — snapshot-freshness-badge
 
-> **Reference example.** This is what a completed `/specify` output looks like.
+> **Reference example.** This is what a completed `/sdd:specify` output looks like.
 > Nothing here is auto-run at workshop time — students build their own feature.
 
 ## 1. Context

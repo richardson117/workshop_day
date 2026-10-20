@@ -1,6 +1,6 @@
 ---
 name: specify
-description: Turn a one-line feature idea into a structured spec.md (6 sections). Use when starting a new feature in Lobby Monitor. Refuses if no feature slug. Triggers on /specify <slug>, "specify X", "spec for X", "напиши спецификацію X".
+description: Turn a one-line feature idea into a structured spec.md (6 sections). Use when starting a new feature in Lobby Monitor. Refuses if no feature slug. Triggers on /sdd:specify <slug>, "specify X", "spec for X", "напиши спецификацію X".
 model: opus
 effort: medium
 ---
@@ -51,13 +51,13 @@ get there.
    ```
    [OK] spec.md written to docs/features/<slug>/spec.md
    
-   Next step: /design <slug>
+   Next step: /sdd:design <slug>
    ```
 
 ## What you DON'T do
 
-- Don't pick the design / approach. That's `/design`'s job.
-- Don't write code. That's `/implement`'s job.
+- Don't pick the design / approach. That's `/sdd:design`'s job.
+- Don't write code. That's `/sdd:implement`'s job.
 - Don't make up answers. If user is vague, ask follow-up. Better 1 more question than
   3 wrong assumptions.
 - Don't auto-fill open questions. Leave them as `TBD — owner: <user>` unless user

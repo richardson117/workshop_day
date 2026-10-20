@@ -16,7 +16,7 @@ Read `docs/features/<slug>/spec.md` + `design.md` and produce a flat checklist
 
 1. **Gate**: check both `spec.md` AND `design.md` exist. If either missing -> refuse:
    ```
-   [NO] Cannot decompose — needs both spec.md and design.md. Run: /specify and /design first.
+   [NO] Cannot decompose — needs both spec.md and design.md. Run: /sdd:specify and /sdd:design first.
    ```
 
 2. **Read**:
@@ -48,7 +48,7 @@ Read `docs/features/<slug>/spec.md` + `design.md` and produce a flat checklist
    ```
    [OK] tasks.md written with N tasks (M can run in parallel)
    
-   Next step: /implement <slug>
+   Next step: /sdd:implement <slug>
    ```
 
 ## What you DON'T do

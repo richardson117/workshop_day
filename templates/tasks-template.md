@@ -39,7 +39,7 @@ design_ref: docs/features/<slug>/design.md
 ## Status legend
 
 - `[ ]` — not started
-- `[x]` — complete (verified green by /implement)
+- `[x]` — complete (verified green by /sdd:implement)
 - `[!]` — escalated (sdd-implementer hit a blocker)
 
 ## Parallel notes

@@ -55,10 +55,10 @@ sdd-lite/
 1. Copy `sdd-lite/skills/*.md` → `~/.claude/skills/` (user-level) or `.claude/skills/`
    (project-level) in your fork of Lobby Monitor.
 2. Copy `sdd-lite/agents/*.md` → `~/.claude/agents/` or `.claude/agents/`.
-3. In Claude Code, invoke a skill: `/specify <feature-name>` (e.g. `/specify add-pl-geo`)
+3. In Claude Code, invoke a skill: `/sdd:specify <feature-name>` (e.g. `/sdd:specify add-pl-geo`)
 4. Claude runs the specify skill → produces `docs/features/add-pl-geo/spec.md`.
-5. Next: `/design add-pl-geo` → reads spec.md, refuses if missing, produces design.md.
-6. Continue: `/tasks` → `/implement` → `/verify` → `/ship`.
+5. Next: `/sdd:design add-pl-geo` → reads spec.md, refuses if missing, produces design.md.
+6. Continue: `/sdd:tasks` → `/sdd:implement` → `/sdd:verify` → `/sdd:ship`.
 
 ## Gates (refusal rules)
 

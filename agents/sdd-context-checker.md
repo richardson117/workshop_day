@@ -1,6 +1,6 @@
 ---
 name: sdd-context-checker
-description: Watchdog that runs every N tasks during /implement to catch drift between code and spec/design. Read-only. Use proactively to prevent silent scope creep.
+description: Watchdog that runs every N tasks during /sdd:implement to catch drift between code and spec/design. Read-only. Use proactively to prevent silent scope creep.
 model: haiku
 tools: Read, Grep, Glob
 color: yellow

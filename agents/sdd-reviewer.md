@@ -1,6 +1,6 @@
 ---
 name: sdd-reviewer
-description: Adversarial code reviewer for /verify stage. Read-only. Default verdict is FAIL — only PASS if cannot find real issues. Per-AC grading. Use proactively in /verify.
+description: Adversarial code reviewer for /sdd:verify stage. Read-only. Default verdict is FAIL — only PASS if cannot find real issues. Per-AC grading. Use proactively in /sdd:verify.
 model: opus
 tools: Read, Grep, Glob, Bash
 color: purple

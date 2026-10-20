@@ -1,6 +1,6 @@
 ---
 name: sdd-implementer
-description: Specialist for GREEN phase of TDD. Takes a RED test + task spec, writes minimal production code to make it pass, runs project gate, reports back. Use proactively after sdd-test-author in /implement loop.
+description: Specialist for GREEN phase of TDD. Takes a RED test + task spec, writes minimal production code to make it pass, runs project gate, reports back. Use proactively after sdd-test-author in /sdd:implement loop.
 model: sonnet
 tools: Read, Grep, Glob, Write, Edit, Bash
 color: green

@@ -1,6 +1,6 @@
 ---
 name: sdd-test-author
-description: Specialist for RED phase of TDD. Reads task AC, writes failing test in project's style, runs it, reports back. Never touches production code. Use proactively in /implement loop.
+description: Specialist for RED phase of TDD. Reads task AC, writes failing test in project's style, runs it, reports back. Never touches production code. Use proactively in /sdd:implement loop.
 model: sonnet
 tools: Read, Grep, Glob, Write, Edit, Bash
 color: red

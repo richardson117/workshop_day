@@ -1,6 +1,6 @@
 ---
 name: design
-description: Turn spec.md into design.md with approach summary, key decisions, and a C4 context sketch. Optionally spawns ADRs for irreversible decisions. Triggers on /design <slug>, "design X", "спроектуй X".
+description: Turn spec.md into design.md with approach summary, key decisions, and a C4 context sketch. Optionally spawns ADRs for irreversible decisions. Triggers on /sdd:design <slug>, "design X", "спроектуй X".
 model: opus
 effort: medium
 ---
@@ -16,7 +16,7 @@ how the team plans to solve the spec. 3 sections + optional ADRs.
 
 1. **Gate**: check `docs/features/<slug>/spec.md` exists. If not, **refuse**:
    ```
-   [NO] Cannot design — needs spec.md first. Run: /specify <slug>
+   [NO] Cannot design — needs spec.md first. Run: /sdd:specify <slug>
    ```
 
 2. **Read context**:
@@ -59,13 +59,13 @@ how the team plans to solve the spec. 3 sections + optional ADRs.
    [OK] design.md written to docs/features/<slug>/design.md
    📋 ADRs written: <list, if any>
    
-   Next step: /tasks <slug>
+   Next step: /sdd:tasks <slug>
    ```
 
 ## What you DON'T do
 
 - Don't write pseudocode. Plain English + module names is enough.
-- Don't decompose into individual tasks. That's `/tasks`'s job.
+- Don't decompose into individual tasks. That's `/sdd:tasks`'s job.
 - Don't introduce new architectural patterns (Hexagonal, Microservices, etc.) — if
   the project doesn't use them already, you don't either.
 - Don't propose a full system redesign for a small feature. Match the feature's size.

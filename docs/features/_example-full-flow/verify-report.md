@@ -60,7 +60,7 @@ Attempts to refute:
 3. **Regression in other dashboard endpoints.** Checked `/api/brands`, `/api/games`,
    `/api/providers` — all still return same shape. OK.
 
-## Green-light checklist for /ship
+## Green-light checklist for /sdd:ship
 
 - [x] All AC PASS
 - [x] `python smoke_check.py` exits 0
@@ -68,4 +68,4 @@ Attempts to refute:
 - [x] Frontend still loads (no JS console errors)
 - [x] Live scan flow untouched (`competitor_lobby_monitor.py` unmodified)
 
-Ready to `/ship`.
+Ready to `/sdd:ship`.

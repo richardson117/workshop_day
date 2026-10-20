@@ -1,7 +1,7 @@
 {
-  "name": "lobby-monitor",
-  "displayName": "Lobby Monitor · Workshop Plugin",
-  "version": "0.1.0",
+  "name": "sdd",
+  "displayName": "SDD-lite · Workshop Plugin",
+  "version": "0.2.0",
   "description": "SDD-lite skills, subagents, and project scaffold for the Product Builder Workshop v2. Turns a raw feature idea into a shipped PR through 6 stages with human gates.",
   "author": {
     "name": "Ros"

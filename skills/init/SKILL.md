@@ -1,6 +1,6 @@
 ---
 name: init
-description: Copy the Lobby Radar workshop starter code from the installed plugin cache into the current working directory, then initialise git and run the smoke check. Use when starting a fresh workshop project. Triggers on /init, "init the workshop", "setup workshop project", "розгорни воркшоп сюди".
+description: Copy the Lobby Radar workshop starter code from the installed plugin cache into the current working directory, then initialise git and run the smoke check. Use when starting a fresh workshop project. Triggers on /sdd:init, "init the workshop", "setup workshop project", "розгорни воркшоп сюди".
 model: sonnet
 effort: low
 ---
@@ -18,29 +18,39 @@ initialise git, commit the seed, and run the smoke check.
 1. **Locate `python`.** Try `python --version`. If that fails, try `python3 --version`.
    Use whichever works. Refuse if neither is on PATH — print:
 
-   > `python not found. Install Python 3.9+ (https://www.python.org/downloads/) and re-run /init.`
+   > `python not found. Install Python 3.9+ (https://www.python.org/downloads/) and re-run /sdd:init.`
 
 2. **Check CWD emptiness.** List files in `.`. Allowed to be present without warning:
    `.git/`, `.claude/`, `.env`, `.gitignore`. If ANY other files/dirs exist, STOP and print:
 
-   > `Directory not empty. Move to an empty folder (mkdir my-lab && cd my-lab) and re-run /init.`
+   > `Directory not empty. Move to an empty folder (mkdir my-lab && cd my-lab) and re-run /sdd:init.`
 
    Do not offer `--force`. Do not overwrite. This is a hard gate.
 
 3. **Resolve plugin cache + copy.** Save this Python script as `_lobby_init.py` in CWD,
-   then execute it via the detected `python` command. Delete the script after it runs.
+   then execute it via the detected `python` command. The script deletes itself when it
+   finishes — do not delete it yourself and do not commit it.
 
    ```python
-   import shutil, sys
+   import atexit, os, shutil, sys
    from pathlib import Path
 
-   cache_root = Path.home() / ".claude" / "plugins" / "cache" / "workshop-day" / "lobby-monitor"
+   atexit.register(lambda: Path(__file__).unlink(missing_ok=True))
+
+   config_dir = Path(os.environ.get("CLAUDE_CONFIG_DIR") or Path.home() / ".claude")
+   cache_root = config_dir / "plugins" / "cache" / "workshop-day" / "sdd"
    if not cache_root.exists():
        print(f"ERROR: plugin cache not found at {cache_root}")
-       print("Reinstall the plugin: /plugin install lobby-monitor@workshop-day")
+       print("Reinstall the plugin: /plugin install sdd@workshop-day")
        sys.exit(2)
 
-   versions = sorted([p for p in cache_root.iterdir() if p.is_dir()], reverse=True)
+   def version_key(p):
+       try:
+           return tuple(int(x) for x in p.name.split("."))
+       except ValueError:
+           return (-1,)
+
+   versions = sorted((p for p in cache_root.iterdir() if p.is_dir()), key=version_key, reverse=True)
    if not versions:
        print(f"ERROR: no version subdirs under {cache_root}")
        sys.exit(2)
@@ -79,7 +89,7 @@ initialise git, commit the seed, and run the smoke check.
    If the script exits non-zero, STOP. Show its stderr verbatim. Do not proceed.
 
 4. **Initialise git if not already a repo.**
-   - If `.git/` does not exist, run: `git init && git add . && git commit -m "chore: init from lobby-monitor plugin"`
+   - If `.git/` does not exist, run: `git init && git add . && git commit -m "chore: init from sdd workshop plugin"`
    - If `.git/` already exists, skip. Do not touch existing history.
 
 5. **Run the smoke check.** `python smoke_check.py` (or `python3` if that was detected).
@@ -94,7 +104,7 @@ initialise git, commit the seed, and run the smoke check.
 
    Next:
      python app.py            # start the dashboard on http://127.0.0.1:8765
-     /specify <slug>          # start your first feature spec
+     /sdd:specify <slug>          # start your first feature spec
    ```
 
 ## Refusal cases (each prints its own message and stops)

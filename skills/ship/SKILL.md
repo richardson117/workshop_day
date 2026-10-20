@@ -16,7 +16,7 @@ Final step. Verify is PASS, code is green, time to ship as a reviewable PR.
 1. **Gate**: read `docs/features/<slug>/verify-report.md`. If "Overall: PASS" not present
    -> refuse:
    ```
-   [NO] Cannot ship — verify report not PASS. Run /verify first.
+   [NO] Cannot ship — verify report not PASS. Run /sdd:verify first.
    ```
 
 2. **Update CHANGELOG.md** at repo root:
