@@ -4,4 +4,4 @@ description: Adversarial Generator-Evaluator pass. Dispatches sdd-reviewer in fr
 
 Feature slug: $ARGUMENTS
 
-Run the `verify` skill using the instructions at `skills/verify/SKILL.md`. Apply them to the feature slug above.
+Use the Skill tool to run the `sdd:verify` skill now, passing the feature slug above as args. Do not search the disk for SKILL.md — the Skill tool loads it.

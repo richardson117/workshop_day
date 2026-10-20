@@ -4,4 +4,4 @@ description: Update CHANGELOG.md, run final smoke check, commit, push branch, op
 
 Feature slug: $ARGUMENTS
 
-Run the `ship` skill using the instructions at `skills/ship/SKILL.md`. Apply them to the feature slug above.
+Use the Skill tool to run the `sdd:ship` skill now, passing the feature slug above as args. Do not search the disk for SKILL.md — the Skill tool loads it.

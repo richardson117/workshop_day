@@ -4,4 +4,4 @@ description: Turn a one-line feature idea into a structured spec.md (6 sections)
 
 Feature slug: $ARGUMENTS
 
-Run the `specify` skill using the instructions at `skills/specify/SKILL.md`. Apply them to the feature slug above.
+Use the Skill tool to run the `sdd:specify` skill now, passing the feature slug above as args. Do not search the disk for SKILL.md — the Skill tool loads it.

@@ -4,4 +4,4 @@ description: Run the TDD loop across all unchecked tasks. Spawns sdd-test-author
 
 Feature slug: $ARGUMENTS
 
-Run the `implement` skill using the instructions at `skills/implement/SKILL.md`. Apply them to the feature slug above.
+Use the Skill tool to run the `sdd:implement` skill now, passing the feature slug above as args. Do not search the disk for SKILL.md — the Skill tool loads it.
