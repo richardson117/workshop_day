@@ -101,8 +101,7 @@ workshop_day/
   static/                      # single-page dashboard
   snapshots/                   # seed data
   docs/                        # methodology + feature specs
-  skills/                      # plugin skills (auto-discovered)
-  commands/                    # plugin slash commands
+  skills/                      # plugin skills = /sdd:<stage> slash commands
   agents/                      # plugin subagents
   templates/                   # artifact templates used by skills
   .claude-plugin/              # plugin manifest + marketplace
