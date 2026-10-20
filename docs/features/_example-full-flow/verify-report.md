@@ -7,7 +7,7 @@
 
 ## Overall verdict: PASS with 1 nit
 
-All 8 AC covered. Two blockers found in the first pass, both fixed and reverified. One
+All 7 AC covered. Two blockers found in the first pass, both fixed and reverified. One
 nit remains that's below the ship bar.
 
 ## Per-AC verdict
