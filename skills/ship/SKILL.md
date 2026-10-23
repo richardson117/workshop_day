@@ -13,8 +13,9 @@ Final step. Verify is PASS, code is green, time to ship as a reviewable PR.
 
 ## How
 
-1. **Gate**: read `docs/features/<slug>/verify-report.md`. If "Overall: PASS" not present
-   -> refuse:
+1. **Gate**: read the `Overall:` line of `docs/features/<slug>/verify-report.md`, ignoring
+   markdown formatting (`Overall: PASS` and `Overall: **PASS**` both count). If the
+   verdict is anything other than PASS (FAIL, CHANGES_REQUESTED, missing) -> refuse:
    ```
    [NO] Cannot ship — verify report not PASS. Run /sdd:verify first.
    ```

@@ -60,10 +60,10 @@ And 4 subagents: `sdd-test-author`, `sdd-implementer`, `sdd-reviewer`,
 
 ## Learn by example
 
-Full reference artifacts for a real feature (add snapshot freshness badges to the
-dashboard) live in [`docs/features/_example-full-flow/`](docs/features/_example-full-flow/).
-Look here to see what a good `spec.md`, `design.md`, ADR, and verify-report look like
-in this codebase.
+Artifacts from a real run of the full cycle on one feature (snapshot freshness badges on
+the dashboard) live in [`docs/features/_example-full-flow/`](docs/features/_example-full-flow/):
+`spec.md`, `design.md`, `tasks.md` and the reviewer's reports from three verify rounds.
+Look here to see what each stage produces in this codebase.
 
 ## Live scan (optional)
 

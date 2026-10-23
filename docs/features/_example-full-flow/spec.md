@@ -1,80 +1,97 @@
-# spec.md — snapshot-freshness-badge
+---
+status: Final v1 — open questions resolved/non-blocking; потребує підтвердження людиною перед /sdd:ship
+owner: Ros
+created_at: 2026-10-23
+size: S
+---
 
-> **Reference example.** This is what a completed `/sdd:specify` output looks like.
-> Nothing here is auto-run at workshop time — students build their own feature.
+# Spec: snapshot-freshness-badge
 
 ## 1. Context
 
-The dashboard shows brands and their lobby state, but never says **how old** the
-displayed data is. Users assume it's live. It might be from yesterday. When someone
-opens the dashboard on Monday morning and the last snapshot was Saturday evening, they
-can't tell.
+Дашборд виглядає живим, але дані можуть бути кількаденної давності, і користувач цього
+не бачить. Через це приймає рішення на старих даних.
 
-**Trigger:** two people in the last workshop asked "is this live?" while looking at
-data that was 40 hours old.
+**Свіжість бренду** = час останнього **успішного** скану цього бренду по всіх GEO разом
+(успішний скан — запуск бренду зі статусом `ok`). Невдалі скани свіжість не оновлюють.
 
-**Who suffers:** anyone using the dashboard to make a decision (buy signal, competitive
-check, "should we rerun the scan?"). Right now they check `data/` file timestamps
-manually. That's not obvious.
+**Why now:** TBD — owner: Ros (див. Open questions #1).
 
 ## 2. Goals
 
-1. User sees the age of the freshest snapshot for each brand, without leaving the
-   dashboard.
-2. User can tell "stale" from "fresh" at a glance (colour or text state, not just a
-   date).
-3. Zero new dependencies. Zero new services.
+- На кожній плитці бренду видно, скільки часу минуло від останнього успішного скану
+  (напис на кшталт `2h ago` / `12h ago` / `3d ago`).
+- Стан свіжості читається з першого погляду за кольором: до 6 год — **fresh**
+  (зелений), 6–24 год — **stale** (приглушений), понад 24 год — **old** (попередження).
+- Бренд без жодного успішного скану явно позначений як **no data**.
 
 ## 3. Non-goals
 
-- No historical age chart. Just the current freshness.
-- No push notifications when data gets old.
-- No auto-refresh trigger. If it's stale, the user re-runs the scan themselves.
-- No per-geo freshness split. One age per brand is enough for v1.
+- Алерти про застарілі дані.
+- Автоперезапуск скану.
+- Графік історії свіжості.
+- Окрема свіжість по GEO — одна свіжість на бренд.
 
 ## 4. User stories
 
-1. **As** a workshop attendee reading the dashboard,
-   **I want** to see how old each brand's data is,
-   **so that** I know if I'm looking at real state or a weekend snapshot.
-
-2. **As** the workshop instructor pointing at the dashboard live,
-   **I want** the age to update after I re-import snapshots,
-   **so that** I don't have to reload with a hard cache-bust.
-
-3. **As** someone giving a demo,
-   **I want** stale data to be visually flagged,
-   **so that** viewers don't misread yesterday's numbers as today's.
+1. **As a** користувач дашборду, **I want** бачити на плитці бренду, коли були останні
+   успішні дані, **so that** я не приймаю рішення на кількаденних даних, думаючи, що
+   вони живі.
+2. **As a** користувач дашборду, **I want** щоб застарілі дані були виділені кольором,
+   **so that** я помічаю проблему з першого погляду, не читаючи кожен напис.
+3. **As a** користувач дашборду, **I want** бачити `no data` для бренду, який ще жодного
+   разу не сканувався успішно, **so that** я не плутаю «даних немає» зі «свіжими даними».
+4. **As a** користувач дашборду, **I want** щоб невдалий скан не «освіжав» бренд,
+   **so that** напис відображає вік реальних даних, а не останньої спроби.
 
 ## 5. Acceptance criteria
 
-### Happy path
-- **AC-happy-1:** When the dashboard loads and the freshest snapshot for `rocket_play`
-  is less than 6 hours old, the brand tile shows a small `fresh` badge with the age
-  ("3h ago").
-- **AC-happy-2:** When the freshest snapshot is between 6 and 24 hours old, the badge
-  reads `stale` with the age ("18h ago"), styled in a muted colour.
-- **AC-happy-3:** When the freshest snapshot is older than 24 hours, the badge reads
-  `old` with the age ("2d ago"), styled in a warning colour.
+### happy-1
+**Given** останній успішний скан бренду був 2 години тому,
+**When** користувач відкриває дашборд,
+**Then** на плитці бренду видно `2h ago` у зеленому (fresh) стилі.
 
-### Error path
-- **AC-error-1:** When a brand has zero snapshots in the DB, the tile shows a `no data`
-  badge instead of an age, and the tile does not crash the rest of the dashboard.
-- **AC-error-2:** When the DB is unreachable, the API endpoint returns an empty age map
-  (200 OK, `{}`), and the frontend renders tiles without badges (no JS error in
-  console).
+### happy-2
+**Given** останній успішний скан бренду був 12 годин тому,
+**When** користувач відкриває дашборд,
+**Then** на плитці бренду видно `12h ago` у приглушеному (stale) стилі.
 
-### Invariant
-- **AC-invariant-1:** The freshness badge for a brand never shows an age computed from
-  a snapshot belonging to a different brand. (Sanity check: don't accidentally join
-  wrong.)
-- **AC-invariant-2:** Existing tests keep passing: `python smoke_check.py` returns 0
-  after the change.
+### happy-3
+**Given** останній успішний скан бренду був 3 дні тому,
+**When** користувач відкриває дашборд,
+**Then** на плитці бренду видно `3d ago` у стилі попередження (old).
+
+### happy-4
+**Given** бренд має успішні скани в кількох GEO (напр. 30 год тому в одному і 2 год
+тому в іншому),
+**When** користувач відкриває дашборд,
+**Then** плитка показує одну свіжість — за найновішим успішним сканом (`2h ago`, fresh).
+
+### error-1
+**Given** бренд не має жодного успішного скану (сканів немає взагалі або всі невдалі),
+**When** користувач відкриває дашборд,
+**Then** на плитці бренду видно `no data` замість віку, а решта плиток відображається
+нормально.
+
+### invariant-1
+**Given** свіжість рахується лише за успішними сканами,
+**When** у бренду є невдалий скан, новіший за останній успішний,
+**Then** напис показує вік останнього **успішного** скану, а не невдалого.
+
+### invariant-2
+**Given** свіжість рахується окремо для кожного бренду,
+**When** інший бренд щойно успішно просканувався,
+**Then** свіжість цього бренду не змінюється.
+
+### invariant-3
+**Given** існуючий smoke-чек проєкту,
+**When** фіча додана,
+**Then** `python smoke_check.py` проходить.
 
 ## 6. Open questions
 
-| # | Question | Owner | Blocker? |
+| # | Question | Owner | Due |
 |---|---|---|---|
-| 1 | Do we compute age server-side or client-side (from timestamps)? | user (design.md) | no — pick in design |
-| 2 | Do we colour "fresh" green or leave it neutral to keep the UI calm? | user (design.md) | no |
-| 3 | Is 6h / 24h the right split? Or 12h / 48h for a weekend-heavy workflow? | user | no — v1 uses 6/24, adjust after workshop feedback |
+| 1 | Why now — що саме спровокувало цю фічу (інцидент, фідбек, демо)? | Ros | **Non-blocking для ship** — на ACs і дизайн не впливає. Відповідь потребує підтвердження людиною перед /sdd:ship (або явного «лишаємо TBD»). |
+| 2 | Межі порогів: рівно 6 год — fresh чи stale? Рівно 24 год — stale чи old? | Ros | **Resolved 2026-10-23** (design D7) — пороги 6h / 24h походять з інтерв'ю `/sdd:specify`: `< 6h` → fresh, `6h ≤ age < 24h` → stale, `≥ 24h` → old. Рівно 6h — stale, рівно 24h — old. **Потребує підтвердження людиною перед /sdd:ship.** |
+| 3 | Формат для віку < 1 год (`45m ago`? `<1h ago`? `0h ago`?) і з якого моменту переходити з годин на дні (`>= 24h` → `1d ago`?) | Ros | **Resolved 2026-10-23** (design D8) — формат `Xm/Xh/Xd ago` походить з інтерв'ю `/sdd:specify`: `< 1h` → `Xm ago` (мінімум `0m ago`), `1h ≤ age < 24h` → `Xh ago`, `≥ 24h` → `Xd ago`; округлення вниз. **Потребує підтвердження людиною перед /sdd:ship.** |
